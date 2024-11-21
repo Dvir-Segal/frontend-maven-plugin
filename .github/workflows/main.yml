@@ -16,7 +16,7 @@ jobs:
       - name: Git checkout
         uses: actions/checkout@v4
       - name: Snyk Test
-        uses: snyk/actions/test@v2
+        uses: snyk/actions/test@v4
         with:
           org: "dvirsegal96"
           project: "Dvir-Segal/frontend-maven-plugin"
