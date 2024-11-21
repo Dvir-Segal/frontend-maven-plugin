@@ -15,6 +15,12 @@ jobs:
     steps:
       - name: Git checkout
         uses: actions/checkout@v4
+      - name: Snyk Test
+        uses: snyk/actions/test@v1
+        with:
+          org: "dvirsegal96"
+          project: "Dvir-Segal/frontend-maven-plugin"
+          token: ${{ secrets.SNYK_TOKEN }}
       - name: Use cache
         uses: actions/cache@v4
         with:
