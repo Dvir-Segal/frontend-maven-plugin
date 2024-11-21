@@ -14,8 +14,10 @@ jobs:
     steps:
       - name: Git checkout
         uses: actions/checkout@v4
-      - name: Authenticate Snyk
-        run: snyk auth ${{ secrets.SNYK_TOKEN }}
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/maven@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
       - name: Use cache
         uses: actions/cache@v4
