@@ -15,11 +15,9 @@ jobs:
       - name: Git checkout
         uses: actions/checkout@v4
       - name: Snyk Test
-        uses: snyk/actions/java@v1
-        with:
-          org: "dvirsegal96"
-          project: "Dvir-Segal/frontend-maven-plugin"
-          token: ${{ secrets.SNYK_TOKEN }}
+        uses: snyk/actions/maven@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       - name: Use cache
         uses: actions/cache@v4
         with:
