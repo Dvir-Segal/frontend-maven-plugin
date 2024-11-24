@@ -16,16 +16,16 @@ jobs:
       - name: Git checkout
         uses: actions/checkout@v4
 
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env: 
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.organization=dvir-segal
-            -Dsonar.projectKey=Dvir-Segal_frontend-maven-plugin
-            -Dsonar.branch.name=master
-            -Dsonar.java.binaries=target/classes
+      # - name: SonarCloud Scan
+      #   uses: SonarSource/sonarcloud-github-action@master
+      #   env: 
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #   with:
+      #     args: >
+      #       -Dsonar.organization=dvir-segal
+      #       -Dsonar.projectKey=Dvir-Segal_frontend-maven-plugin
+      #       -Dsonar.branch.name=master
+      #       -Dsonar.java.binaries=target/classes
 
       - name: Use cache
         uses: actions/cache@v4
@@ -43,6 +43,17 @@ jobs:
       - name: "Run Maven"
         shell: bash
         run: mvn clean install --batch-mode -PintegrationTests
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env: 
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.organization=dvir-segal
+            -Dsonar.projectKey=Dvir-Segal_frontend-maven-plugin
+            -Dsonar.branch.name=master
+            -Dsonar.java.binaries=target/classes
       - name: "Deploy"
         if: github.repository_owner == 'eirslett' && github.ref == 'refs/heads/master' && matrix.os == 'ubuntu-latest'
         shell: bash
