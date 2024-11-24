@@ -22,7 +22,7 @@ jobs:
         with:
           args: >
             -Dsonar.organization=dvir-segal
-            -Dsonar.projectKey=Dvir-Segal
+            -Dsonar.projectKey=Dvir-Segal_frontend-maven-plugin
             -Dsonar.branch.name=master
 
       - name: Use cache
