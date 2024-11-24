@@ -23,6 +23,7 @@ jobs:
           args: >
             -Dsonar.organization=dvir-segal
             -Dsonar.projectKey=Dvir-Segal
+            -Dsonar.branch.name=master
 
       - name: Use cache
         uses: actions/cache@v4
