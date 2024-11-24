@@ -53,7 +53,6 @@ jobs:
             -Dsonar.organization=dvir-segal
             -Dsonar.projectKey=Dvir-Segal_frontend-maven-plugin
             -Dsonar.branch.name=master
-            -Dsonar.java.binaries=target/classes
       - name: "Deploy"
         if: github.repository_owner == 'eirslett' && github.ref == 'refs/heads/master' && matrix.os == 'ubuntu-latest'
         shell: bash
