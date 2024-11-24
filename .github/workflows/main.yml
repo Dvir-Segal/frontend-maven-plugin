@@ -15,15 +15,15 @@ jobs:
     steps:
       - name: Git checkout
         uses: actions/checkout@v4
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env: 
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.organization=dvir-segal
-            -Dsonar.projectKey=Dvir-Segal_frontend-maven-plugin
-            -Dsonar.branch.name=master
+      # - name: SonarCloud Scan
+      #   uses: SonarSource/sonarcloud-github-action@master
+      #   env: 
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #   with:
+      #     args: >
+      #       -Dsonar.organization=dvir-segal
+      #       -Dsonar.projectKey=Dvir-Segal_frontend-maven-plugin
+      #       -Dsonar.branch.name=master
 
       - name: Use cache
         uses: actions/cache@v4
@@ -37,6 +37,17 @@ jobs:
         with:
           java-version: "11"
           distribution: temurin
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env: 
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.organization=dvir-segal
+            -Dsonar.projectKey=Dvir-Segal_frontend-maven-plugin
+            -Dsonar.branch.name=master
+      
       - name: "Run Maven"
         shell: bash
         run: mvn clean install --batch-mode -PintegrationTests
